@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historický dům v Panenském Týnci - Prodej</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lora:wght@400;500;600&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A961;
+            --dark: #1a1a1a;
+            --cream: #F5F1E8;
+            --brown: #5C4A3C;
+            --light-gold: #E8D7B8;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            color: var(--dark);
+            background: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #3a2a1a 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 0 L50 50 L100 0 L100 100 L0 100 Z" fill="rgba(201,169,97,0.05)"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+            animation: pattern 20s linear infinite;
+        }
+
+        @keyframes pattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(200px, 200px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+        }
+
+        .hero .lead {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1.2s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-family: 'Crimson Pro', serif;
+            text-decoration: none;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201,169,97,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-gold);
+            border-color: var(--light-gold);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light-gold);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--brown);
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 0;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--gold);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: var(--brown);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--dark);
+            color: white;
+            padding: 6rem 2rem;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Location Section */
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .location-list {
+            list-style: none;
+        }
+
+        .location-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(92,74,60,0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .location-list li::before {
+            content: '→';
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            background: var(--dark);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--brown) 0%, var(--dark) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            margin: 0;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .contact-item {
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .contact-item a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--light-gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Price Badge */
+        .price-badge {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 1.5rem 2rem;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(201,169,97,0.4);
+            z-index: 1000;
+            font-family: 'Playfair Display', serif;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .price-badge .label {
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        .price-badge .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--light-gold) 100%);
+            padding: 3rem;
+            margin: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 10rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(255,255,255,0.3);
+            line-height: 1;
+        }
+
+        .highlight-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            color: var(--brown);
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Historický dům v srdci Panenského Týnce</h1>
+            <p class="subtitle">Nejmagičtější místo Česka</p>
+            <p class="lead">
+                Jedinečná příležitost vlastnit historickou nemovitost ze 14. století v klášterním areálu 
+                s gotickým chrámem. Ideální pro bydlení i podnikání v oblasti s výjimečnou energií a turistickým potenciálem.
+            </p>
+            <div class="cta-buttons">
+                <a href="tel:608663330" class="btn btn-primary">Zavolat teď</a>
+                <a href="#kontakt" class="btn btn-secondary">Zobrazit kontakt</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">249 m²</span>
+                <span class="stat-label">Celková plocha domu</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">810 m²</span>
+                <span class="stat-label">Pozemek včetně zahrady</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1300</span>
+                <span class="stat-label">První zmínka na mapách</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">25 min</span>
+                <span class="stat-label">Na letiště Václava Havla</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section>
+        <h2 class="section-title">O nemovitosti</h2>
+        <p class="section-subtitle">Kde historie potkává moderní komfort</p>
+        
+        <div class="highlight-box">
+            <h3>Nejmagičtější místo Česka</h3>
+            <p>V roce 2014 získal nedostavěný gotický chrám Panny Marie v Panenském Týnci titul "Nejmagičtější místo Česka" 
+            s přes 22 tisíci hlasy veřejnosti. Podle psychotroniků se zde nachází silné energetické místo s léčivými účinky.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏰</div>
+                <h3>Historická hodnota</h3>
+                <p>Dům ze 14. století, součást původního panského dvora. Postaven na sloupech spojených klenbami, 
+                s pevnými základy a silnými zdmi z kombinace kamene a cihel.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Spirituální místo</h3>
+                <p>Pozitivní energetická zóna číslo 8 - nejsilnější uzdravující. Místo pomáhá tlumit deprese, 
+                přináší dobrou náladu a podporuje rekonvalescenci.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏡</div>
+                <h3>Bydlení i byznys</h3>
+                <p>Ideální pro Airbnb, wellness centrum, meditační prostor, kavárnu, svatební servis nebo kombinaci s bydlením. 
+                Přímý výhled na gotický chrám.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Částečně zrekonstruováno</h3>
+                <p>Byt 3+kk (95m²) před dokončením s podlahovým topením a tepelným čerpadlem. 
+                Zbývající část (82,6m²) před rekonstrukcí - volnost vlastního designu.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Potenciál růstu</h3>
+                <p>Možnost přístavby dalšího patra (200-250m²) nebo půdní vestavby. 
+                V roce 2026 dokončení dálnice do Prahy - zvýšení dostupnosti a hodnoty.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">♨️</div>
+                <h3>Moderní technologie</h3>
+                <p>Tepelné čerpadlo 19kW (A++), podlahové vodní topení, nová kanalizace, 
+                nadstandardní izolace (pěnové sklo), nový vodovodní rozvod.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section>
+        <h2 class="section-title">Lokace & Dostupnost</h2>
+        <p class="section-subtitle">Klid přírody s výborným spojením</p>
+        
+        <div class="location-content">
+            <div>
+                <ul class="location-list">
+                    <li><strong>Praha centrum:</strong> 37 km</li>
+                    <li><strong>Letiště Václava Havla:</strong> 25 minut autem</li>
+                    <li><strong>OC Šestka Praha 6:</strong> 30 minut</li>
+                    <li><strong>Louny:</strong> 10 km</li>
+                    <li><strong>Slaný:</strong> 15 km</li>
+                    <li><strong>Dálnice D7:</strong> EXIT 37 (2026 dokončení)</li>
+                </ul>
+                <p style="margin-top: 2rem; color: var(--brown);">
+                    <strong>Pravidelné autobusové spojení</strong> do Prahy (Veleslavín), Loun a Slaného. 
+                    V obci škola, školka, pošta, lékař, restaurace, obchod a další služby.
+                </p>
+            </div>
+            <div>
+                <div class="feature-card">
+                    <h3>Přírodní park Džbán</h3>
+                    <p>Panenský Týnec leží v krásném přírodním parku. Tudy procházela historická „Královská cesta" z Prahy do Lipska. 
+                    Místo s bohatou historií, které každoročně navštíví tisíce turistů.</p>
+                    <p style="margin-top: 1rem;"><strong>V obci:</strong> Parkoviště u chrámu, letní svatby, koncerty a kulturní události.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section style="background: white; margin: 0; max-width: 100%; padding: 8rem 2rem;">
+        <h2 class="section-title">Technické specifikace</h2>
+        <p class="section-subtitle">Vše co potřebujete vědět</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Plochy</h3>
+                <p><strong>Obytná plocha:</strong> 176,9 m²<br>
+                <strong>Technická část:</strong> 72,2 m²<br>
+                <strong>Celkem dům:</strong> 249 m²<br>
+                <strong>Pozemek:</strong> 810 m²</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Dispozice</h3>
+                <p><strong>Byt před dokončením 3+kk:</strong> 95m²<br>
+                - Obývák 36m² s krbovými kamny<br>
+                - Ložnice 17,4 a 16m²<br>
+                - Koupelna 8,7m² (vana+sprcha)<br>
+                <strong>Před rekonstrukcí:</strong> 82,6m²</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Vytápění</h3>
+                <p><strong>Tepelné čerpadlo:</strong> 19kW<br>
+                <strong>COP:</strong> 5,71 (A++)<br>
+                <strong>Provoz do:</strong> -25°C<br>
+                <strong>Podlahové topení:</strong> Vodní<br>
+                <strong>Komíny:</strong> 2x pro krbová kamna</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Inženýrské sítě</h3>
+                <p><strong>Voda:</strong> Nová přípojka<br>
+                <strong>Kanalizace:</strong> Nová<br>
+                <strong>Elektřina:</strong> 3x32A, tarif D45d<br>
+                <strong>Plyn:</strong> Přípojka na domě<br>
+                <strong>Izolace:</strong> Pěnové sklo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Possibilities Section -->
+    <section>
+        <h2 class="section-title">Možnosti využití</h2>
+        <p class="section-subtitle">Váš sen, vaše možnosti</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏠</div>
+                <h3>Rodinné bydlení</h3>
+                <p>Prostorný dům v klidném, historickém prostředí s výbornou dostupností Prahy. 
+                Ideální pro rodinu hledající kombinaci klidu a dobré dostupnosti.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏨</div>
+                <h3>Airbnb / Ubytování</h3>
+                <p>Vynikající turistická lokalita s tisíci návštěvníky ročně. 
+                Možnost vybudovat 4-6 bytových jednotek pro krátkodobé pronájmy.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧘</div>
+                <h3>Wellness centrum</h3>
+                <p>Spirituální místo ideální pro meditace, jógu, masáže, sauny nebo sanatorium. 
+                Energeticky silné místo s léčivými účinky.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">☕</div>
+                <h3>Kavárna / Restaurace</h3>
+                <p>Přímý výhled na gotický chrám, turistický ruch, parkování u chrámu. 
+                Perfektní místo pro kavárnu, restauraci nebo čajovnu.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💒</div>
+                <h3>Svatební servis</h3>
+                <p>Chrám slouží k svatbám, v obci se konají svatební akce. 
+                Možnost svatebního salonu, ubytování hostů nebo cateringového servisu.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏥</div>
+                <h3>Zdravotnictví</h3>
+                <p>Ordinace, fyzioterapie, psychoterapie v klidném, léčivém prostředí. 
+                V obci je lékař, ale prostor pro specializované služby.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section style="background: white; margin: 0; max-width: 100%; padding: 8rem 2rem;">
+        <h2 class="section-title">Fotogalerie</h2>
+        <p class="section-subtitle">Prohlédněte si nemovitost a její okolí</p>
+        
+        <!-- PLÁNY A PŮDORYSY -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Plány a půdorysy</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image1.jpg" alt="Pohled na dům - katastrální mapa" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Katastrální mapa</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image2.jpg" alt="Půdorys současného stavu domu" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Půdorys - nynější stav</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image3.jpg" alt="Návrh budoucího půdorysu se 4 byty" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Možný návrh - 4 byty</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image4.jpg" alt="Návrh půdní vestavby se 2 byty" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Možný návrh - půdní vestavba</p>
+            </div>
+        </div>
+
+        <!-- EXTERIÉR A OKOLÍ -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Exteriér a okolí</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image6.jpg" alt="Pohled na dům ze zahrady" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Pohled na dům ze zahrady</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image7.jpg" alt="Pohled na gotický chrám ze zahrady" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Výhled na chrám ze zahrady</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image17.jpg" alt="Dvůr před domem" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Dvůr</p>
+            </div>
+        </div>
+
+        <!-- INTERIÉR - BYT PŘED DOKONČENÍM -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Interiér - byt před dokončením</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image8.jpg" alt="Obývací pokoj 36m² s krbovými kamny" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Obývací pokoj s krbovými kamny</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image9.jpg" alt="Výhled z obývacího pokoje na gotický chrám" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Výhled z obývacího pokoje na chrám</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image10.jpg" alt="Ložnice s gotickou klenbou" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Ložnice</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image12.jpg" alt="Vstupní hala domu" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Vstupní hala</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image14.jpg" alt="Moderní koupelna s vanou a sprchovým koutem" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Koupelna</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image15.jpg" alt="Rozestavěný pokoj v rekonstrukci" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Rozestavěný pokoj</p>
+            </div>
+        </div>
+
+        <!-- ČÁST PŘED REKONSTRUKCÍ -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Část před rekonstrukcí</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image18.jpg" alt="Prostor před rekonstrukcí - volba vlastního designu" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Před rekonstrukcí</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image19.jpg" alt="Prostor před rekonstrukcí s historickými klenbami" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Historické klenby</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image21.jpg" alt="Místnost před rekonstrukcí" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Před rekonstrukcí</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image22.jpg" alt="Další prostor před rekonstrukcí" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Před rekonstrukcí</p>
+            </div>
+        </div>
+
+        <!-- TECHNOLOGIE A PŮDA -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Technologie a půda</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image26.jpg" alt="Rozdělovač podlahového vodního topení" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Rozdělovač podlahového topení</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image30.jpg" alt="Tepelné čerpadlo 19kW, třída A++" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Tepelné čerpadlo</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image35.jpg" alt="Půda s možností vestavby" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Půda k vestavbě</p>
+            </div>
+        </div>
+
+        <!-- FOTOGRAFIE Z REKONSTRUKCE -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Průběh rekonstrukce</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image39.jpg" alt="Izolace podlah pěnovým sklem" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Izolace - pěnové sklo</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image42.jpg" alt="Pokládka podlahového vodního topení" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Pokládka podlahového topení</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image44.jpg" alt="Nová kanalizace v domě" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Nová kanalizace</p>
+            </div>
+        </div>
+
+        <!-- CHRÁM A OKOLÍ -->
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--dark); text-align: center; margin: 4rem 0 2rem;">Gotický chrám - Nejmagičtější místo Česka</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/image48.jpg" alt="Letecký pohled na gotický chrám Panny Marie" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Chrám z dronu</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image49.jpg" alt="Letecký pohled na klášterní areál" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Areál z dronu</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image57.jpg" alt="Hudební koncert v chrámu" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Hudební akce v chrámu</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/image59.jpg" alt="Kulturní událost v gotickém chrámu" loading="lazy">
+                <p style="text-align: center; padding: 1rem; font-size: 0.9rem; color: var(--brown);">Koncert v chrámu</p>
+            </div>
+        </div>
+
+        <!-- Lightbox info -->
+        <p style="text-align: center; margin-top: 3rem; color: var(--brown); font-style: italic;">
+            💡 Klikněte na fotografii pro zvětšení
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="kontakt">
+        <h2 class="section-title" style="color: var(--gold);">Kontakt</h2>
+        <p class="section-subtitle" style="color: var(--light-gold);">Jsme tu pro vás</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📞</span>
+                <a href="tel:608663330">608 663 330</a>
+            </div>
+            <div class="contact-item">
+                <span>✉️</span>
+                <a href="/cdn-cgi/l/email-protection#9bedf0e8fef2fdfee9eff4edfadbfcf6faf2f7b5f8f4f6"><span class="__cf_email__" data-cfemail="d2a4b9a1b7bbb4b7a0a6bda4b392b5bfb3bbbefcb1bdbf">[email&#160;protected]</span></a>
+            </div>
+            <p style="margin-top: 3rem; font-size: 1.1rem; opacity: 0.9;">
+                Těšíme se na vaši návštěvu tohoto výjimečného místa!
+            </p>
+        </div>
+    </section>
+
+    <!-- Price Badge -->
+    <div class="price-badge">
+        <span class="label">Cena</span>
+        <span class="price">K jednání</span>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Lightbox funkcionalita pro galerii
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox) {
+                    lightbox.style.display = 'block';
+                    document.getElementById('lightbox-img').src = this.src;
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+    </script>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; cursor:pointer;" onclick="this.style.display='none'; document.body.style.overflow='auto';">
+        <img id="lightbox-img" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); max-width:90%; max-height:90%; object-fit:contain;">
+        <span style="position:absolute; top:20px; right:40px; color:white; font-size:40px; cursor:pointer;">&times;</span>
+    </div>
+
+    <script>
+        // Zavření lightboxu klávesou ESC
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (e.key === 'Escape' && lightbox && lightbox.style.display === 'block') {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
